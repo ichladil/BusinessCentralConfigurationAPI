@@ -1,0 +1,25 @@
+{
+    "id": "aef09efa-6c6b-4eef-a329-7a89f2719eb8",
+    "name": "Business Central Configuration API",
+    "publisher": "Essence International s.r.o.",
+    "brief": "",
+    "description": "",
+    "version": "1.0.0.0",
+    "privacyStatement": "",
+    "EULA": "",
+    "help": "",
+    "url": "http://www.essencebs.com",
+    "logo": ".\\essence.png",
+    "capabilities": [],
+    "dependencies": [],
+    "screenshots": [],
+    "platform": "13.0.0.0",
+    "application": "13.0.0.0",
+    "idRange": {
+        "from": 60250,
+        "to": 60259
+    },
+    "runtime": "2.1",
+    "target": "Internal"
+
+}
