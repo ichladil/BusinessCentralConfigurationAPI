@@ -77,39 +77,21 @@ page 60250 "configurationPackageEBS"
     [ServiceEnabled()]
     procedure importPackageFromFile(fileName: Text)
     var
-        TempBlob: Record TempBlob temporary;
+        TempBlob: Codeunit "Temp Blob";
         FileManagement: Codeunit "File Management";
     begin
         FileManagement.BLOBImportFromServerFile(TempBlob, fileName);
         ImportPackageFromBLOB(TempBlob);
     end;
 
-    [ServiceEnabled()]
-    procedure importPackageFromURL(url: Text)
-    var
-        TempBlob: Record TempBlob temporary;
-    begin
-        TempBlob.TryDownloadFromUrl(url);
-        ImportPackageFromBLOB(TempBlob);
-    end;
-
-    [ServiceEnabled()]
-    procedure importPackageFromBase64Text(base64: Text)
-    var
-        TempBlob: Record TempBlob temporary;
-    begin
-        TempBlob.FromBase64String(base64);
-        ImportPackageFromBLOB(TempBlob);
-    end;
-
-    local procedure importPackageFromBLOB(var TempBlob: Record TempBlob temporary)
+    local procedure importPackageFromBLOB(var TempBlob: Codeunit "Temp Blob")
     var
         ConfigXMLExchange: Codeunit "Config. XML Exchange";
-        TempDecompressedBlob: Record TempBlob temporary;
+        TempDecompressedBlob: Codeunit "Temp Blob";
         InStr: InStream;
     begin
         ConfigXMLExchange.DecompressPackageToBlob(TempBlob, TempDecompressedBlob);
-        TempDecompressedBlob.Blob.CreateInStream(InStr);
+        TempDecompressedBlob.CreateInStream(InStr);
         if not ConfigXMLExchange.ImportPackageXMLWithCodeFromStream(InStr, Code) then
             Error('Unable to process package import');
     end;
